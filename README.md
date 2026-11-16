@@ -14,9 +14,13 @@ OpenCore EFI for running macOS Sequoia on one specific laptop: **HP 250 G7, prod
 
 **This EFI is made for exactly one laptop configuration: HP 250 G7 6UK91EA (Intel Core i3-7020U, Intel HD Graphics 620).**
 
-"HP 250 G7" is a whole family of laptops with very different hardware inside: 8th and 10th generation Intel processors, Pentium and Celeron chips, Realtek Wi-Fi cards. This EFI will **not** work on them: macOS will either not start at all or will run without graphics, sound or Wi-Fi.
+"HP 250 G7" is a whole family of laptops with very different hardware inside: 8th and 10th generation Intel processors, Pentium and Celeron chips. This EFI will **not** work on them: macOS will either not start at all or will run without graphics, sound or Wi-Fi.
 
 Check the product number on the sticker on the bottom of your laptop. If it is not `6UK91EA`, do not use this EFI as is.
+
+**The Wi-Fi and Bluetooth module in the author's laptop was replaced.** From the factory this laptop has a Realtek RTL8822BE module, which does not work in macOS at all: no driver exists for it. The author replaced it with an Intel module. Everything in this EFI that concerns wireless (`itlwm`, `AirportItlwm`, `IntelBluetoothFirmware`, `IntelBTPatcher`, `BlueToolFixup` and the HeliPort app) is for Intel modules only.
+
+If your laptop still has the factory Realtek module, macOS will install and run, but **without Wi-Fi and Bluetooth**. Your options are to replace the module with a supported Intel one, to use the wired Ethernet connection, or to use an external USB adapter that works with macOS.
 
 Also keep in mind:
 
@@ -31,7 +35,7 @@ Also keep in mind:
 | Model | HP 250 G7, product number 6UK91EA |
 | Processor | Intel Core i3-7020U (Kaby Lake) |
 | Graphics | Intel HD Graphics 620 |
-| Wi-Fi / Bluetooth | Intel card (driven by `itlwm` and `IntelBluetoothFirmware`) |
+| Wi-Fi / Bluetooth | Intel module installed by the author in place of the factory Realtek RTL8822BE |
 | Ethernet | Realtek RTL8111 |
 | macOS | Sequoia |
 | Mac model used (SMBIOS) | MacBookPro15,2 |
@@ -42,7 +46,7 @@ According to the author, everything works in daily use:
 
 - Graphics acceleration, built-in display, brightness control and brightness keys
 - Sound
-- Wi-Fi (through the HeliPort app, see step 8) and Bluetooth
+- Wi-Fi and Bluetooth, only with the Intel module installed instead of the factory Realtek one (Wi-Fi is controlled through the HeliPort app, see step 8)
 - Ethernet
 - Keyboard and touchpad
 - Battery status
@@ -108,7 +112,9 @@ The installer may start in German. You can change the language in the menu bar a
 
 The laptop will restart several times. Each time press **F9**, choose the flash drive, hold **Esc**, and pick the entry `macOS Installer`. When that entry is gone, pick the entry with the name you gave your disk. At the end the macOS setup assistant will open.
 
-**Step 8. Turn on Wi-Fi.**
+**Step 8. Turn on Wi-Fi (Intel module only).**
+This step applies only if the factory Realtek RTL8822BE module has been replaced with an Intel one. With the Realtek module there is no Wi-Fi in macOS, and HeliPort will not help.
+
 Download the [HeliPort](https://github.com/OpenIntelWireless/HeliPort/releases) app and move it to the Applications folder. It adds a Wi-Fi icon to the menu bar where you choose a network. Add HeliPort to your login items so it starts automatically.
 
 **Step 9. Make the laptop boot without the flash drive.**
@@ -172,9 +178,13 @@ The folder also contains kexts that are switched off in `config.plist`: `Airport
 
 **Эта EFI сделана строго под одну конфигурацию ноутбука: HP 250 G7 6UK91EA (Intel Core i3-7020U, Intel HD Graphics 620).**
 
-«HP 250 G7» — это целое семейство ноутбуков с очень разной начинкой: процессоры Intel 8-го и 10-го поколений, Pentium и Celeron, Wi-Fi-карты Realtek. На них эта EFI работать **не будет**: macOS либо не запустится вовсе, либо останется без графики, звука или Wi-Fi.
+«HP 250 G7» — это целое семейство ноутбуков с очень разной начинкой: процессоры Intel 8-го и 10-го поколений, Pentium и Celeron. На них эта EFI работать **не будет**: macOS либо не запустится вовсе, либо останется без графики, звука или Wi-Fi.
 
 Посмотрите номер продукта на наклейке на днище ноутбука. Если там не `6UK91EA`, не используйте эту EFI как есть.
+
+**В ноутбуке автора заменён модуль Wi-Fi и Bluetooth.** С завода в этом ноутбуке стоит модуль Realtek RTL8822BE, который в macOS не работает совсем: драйвера для него не существует. Автор заменил его на модуль Intel. Всё, что в этой EFI относится к беспроводной связи (`itlwm`, `AirportItlwm`, `IntelBluetoothFirmware`, `IntelBTPatcher`, `BlueToolFixup` и приложение HeliPort), предназначено только для модулей Intel.
+
+Если в вашем ноутбуке остался заводской модуль Realtek, macOS установится и будет работать, но **без Wi-Fi и Bluetooth**. Варианты: заменить модуль на поддерживаемый Intel, пользоваться проводным подключением Ethernet или внешним USB-адаптером, совместимым с macOS.
 
 Также имейте в виду:
 
@@ -189,7 +199,7 @@ The folder also contains kexts that are switched off in `config.plist`: `Airport
 | Модель | HP 250 G7, номер продукта 6UK91EA |
 | Процессор | Intel Core i3-7020U (Kaby Lake) |
 | Графика | Intel HD Graphics 620 |
-| Wi-Fi / Bluetooth | карта Intel (работает через `itlwm` и `IntelBluetoothFirmware`) |
+| Wi-Fi / Bluetooth | модуль Intel, установленный автором вместо заводского Realtek RTL8822BE |
 | Ethernet | Realtek RTL8111 |
 | macOS | Sequoia |
 | Модель Mac (SMBIOS) | MacBookPro15,2 |
@@ -200,7 +210,7 @@ The folder also contains kexts that are switched off in `config.plist`: `Airport
 
 - ускорение графики, встроенный экран, регулировка яркости и клавиши яркости
 - звук
-- Wi-Fi (через приложение HeliPort, см. шаг 8) и Bluetooth
+- Wi-Fi и Bluetooth, только с модулем Intel вместо заводского Realtek (Wi-Fi управляется через приложение HeliPort, см. шаг 8)
 - Ethernet
 - клавиатура и тачпад
 - индикатор батареи
@@ -266,7 +276,9 @@ com.apple.recovery.boot
 
 Ноутбук несколько раз перезагрузится. Каждый раз нажимайте **F9**, выбирайте флешку, держите **Esc** и выбирайте пункт `macOS Installer`. Когда этот пункт исчезнет, выбирайте пункт с именем, которое вы дали диску. В конце откроется помощник настройки macOS.
 
-**Шаг 8. Включите Wi-Fi.**
+**Шаг 8. Включите Wi-Fi (только для модуля Intel).**
+Этот шаг относится только к ноутбукам, где заводской модуль Realtek RTL8822BE заменён на Intel. С модулем Realtek Wi-Fi в macOS нет, и HeliPort не поможет.
+
 Скачайте приложение [HeliPort](https://github.com/OpenIntelWireless/HeliPort/releases) и перенесите его в папку «Программы». Оно добавляет в строку меню значок Wi-Fi, через который выбирается сеть. Добавьте HeliPort в объекты входа, чтобы оно запускалось автоматически.
 
 **Шаг 9. Сделайте так, чтобы ноутбук загружался без флешки.**
