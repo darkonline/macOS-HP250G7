@@ -18,7 +18,7 @@ OpenCore EFI for running macOS Sequoia on one specific laptop: **HP 250 G7, prod
 
 Check the product number on the sticker on the bottom of your laptop. If it is not `6UK91EA`, do not use this EFI as is.
 
-**The Wi-Fi and Bluetooth module in the author's laptop was replaced.** From the factory this laptop has a Realtek RTL8822BE module, which does not work in macOS at all: no driver exists for it. The author replaced it with an Intel module. Everything in this EFI that concerns wireless (`itlwm`, `AirportItlwm`, `IntelBluetoothFirmware`, `IntelBTPatcher`, `BlueToolFixup` and the HeliPort app) is for Intel modules only.
+**The Wi-Fi and Bluetooth module in my laptop has been replaced.** From the factory this laptop has a Realtek RTL8822BE module, which does not work in macOS at all: no driver exists for it. I replaced it with an Intel module. Everything in this EFI that concerns wireless (`itlwm`, `AirportItlwm`, `IntelBluetoothFirmware`, `IntelBTPatcher`, `BlueToolFixup` and the HeliPort app) is for Intel modules only.
 
 If your laptop still has the factory Realtek module, macOS will install and run, but **without Wi-Fi and Bluetooth**. Your options are to replace the module with a supported Intel one, to use the wired Ethernet connection, or to use an external USB adapter that works with macOS.
 
@@ -35,14 +35,14 @@ Also keep in mind:
 | Model | HP 250 G7, product number 6UK91EA |
 | Processor | Intel Core i3-7020U (Kaby Lake) |
 | Graphics | Intel HD Graphics 620 |
-| Wi-Fi / Bluetooth | Intel module installed by the author in place of the factory Realtek RTL8822BE |
+| Wi-Fi / Bluetooth | Intel module that I installed in place of the factory Realtek RTL8822BE |
 | Ethernet | Realtek RTL8111 |
 | macOS | Sequoia |
 | Mac model used (SMBIOS) | MacBookPro15,2 |
 
 ### What works
 
-According to the author, everything works in daily use:
+On my laptop everything works in daily use:
 
 - Graphics acceleration, built-in display, brightness control and brightness keys
 - Sound
@@ -92,7 +92,7 @@ Turn the laptop on and immediately start pressing **F10** to open the BIOS setup
 - Secure Boot: disabled;
 - Legacy Support: disabled (the laptop must boot in UEFI mode).
 
-Save and exit. The author did not record their exact BIOS settings, so these are the general recommendations of the OpenCore guide.
+Save and exit. I did not record my exact BIOS settings, so these are the general recommendations of the OpenCore guide.
 
 **Step 6. Boot from the flash drive.**
 Connect the Ethernet cable and the flash drive. Turn the laptop on and immediately start pressing **F9**. In the menu choose your flash drive.
@@ -126,7 +126,7 @@ After that, remove the flash drive and restart. macOS should boot by itself.
 
 - **Boot menu is hidden.** To see the OpenCore menu, hold **Esc** while the laptop starts.
 - **Text during startup.** The EFI boots in verbose mode (`-v`). To get the usual Apple logo, remove `-v` from `boot-args` in `config.plist`.
-- **Security settings are lowered.** System Integrity Protection is partially disabled (`csr-active-config` = `03080000`) and the boot argument `amfi=0x80` is set. This is how the author's system is configured. If you do not need it, restore the defaults using the OpenCore guide.
+- **Security settings are lowered.** System Integrity Protection is partially disabled (`csr-active-config` = `03080000`) and the boot argument `amfi=0x80` is set. This is how my system is configured. If you do not need it, restore the defaults using the OpenCore guide.
 - **macOS updates** can break a Hackintosh. Before a major update, check that newer versions of OpenCore and the kexts exist, and keep the installer flash drive as a rescue tool.
 - **The previous version** of this EFI is available under the tag [`v1-old`](../../tree/v1-old).
 
@@ -182,7 +182,7 @@ The folder also contains kexts that are switched off in `config.plist`: `Airport
 
 Посмотрите номер продукта на наклейке на днище ноутбука. Если там не `6UK91EA`, не используйте эту EFI как есть.
 
-**В ноутбуке автора заменён модуль Wi-Fi и Bluetooth.** С завода в этом ноутбуке стоит модуль Realtek RTL8822BE, который в macOS не работает совсем: драйвера для него не существует. Автор заменил его на модуль Intel. Всё, что в этой EFI относится к беспроводной связи (`itlwm`, `AirportItlwm`, `IntelBluetoothFirmware`, `IntelBTPatcher`, `BlueToolFixup` и приложение HeliPort), предназначено только для модулей Intel.
+**В моём ноутбуке заменён модуль Wi-Fi и Bluetooth.** С завода в этом ноутбуке стоит модуль Realtek RTL8822BE, который в macOS не работает совсем: драйвера для него не существует. Вместо него у меня стоит модуль Intel. Всё, что в этой EFI относится к беспроводной связи (`itlwm`, `AirportItlwm`, `IntelBluetoothFirmware`, `IntelBTPatcher`, `BlueToolFixup` и приложение HeliPort), предназначено только для модулей Intel.
 
 Если в вашем ноутбуке остался заводской модуль Realtek, macOS установится и будет работать, но **без Wi-Fi и Bluetooth**. Варианты: заменить модуль на поддерживаемый Intel, пользоваться проводным подключением Ethernet или внешним USB-адаптером, совместимым с macOS.
 
@@ -199,14 +199,14 @@ The folder also contains kexts that are switched off in `config.plist`: `Airport
 | Модель | HP 250 G7, номер продукта 6UK91EA |
 | Процессор | Intel Core i3-7020U (Kaby Lake) |
 | Графика | Intel HD Graphics 620 |
-| Wi-Fi / Bluetooth | модуль Intel, установленный автором вместо заводского Realtek RTL8822BE |
+| Wi-Fi / Bluetooth | модуль Intel, установленный вместо заводского Realtek RTL8822BE |
 | Ethernet | Realtek RTL8111 |
 | macOS | Sequoia |
 | Модель Mac (SMBIOS) | MacBookPro15,2 |
 
 ### Что работает
 
-По словам автора, в повседневной работе работает всё:
+На моём ноутбуке в повседневной работе работает всё:
 
 - ускорение графики, встроенный экран, регулировка яркости и клавиши яркости
 - звук
@@ -256,7 +256,7 @@ com.apple.recovery.boot
 - Secure Boot: выключен;
 - Legacy Support: выключен (ноутбук должен загружаться в режиме UEFI).
 
-Сохраните настройки и выйдите. Автор не записывал свои точные настройки BIOS, поэтому здесь приведены общие рекомендации из руководства OpenCore.
+Сохраните настройки и выйдите. Точных настроек BIOS у меня не записано, поэтому здесь приведены общие рекомендации из руководства OpenCore.
 
 **Шаг 6. Загрузитесь с флешки.**
 Подключите кабель Ethernet и флешку. Включите ноутбук и сразу начните нажимать **F9**. В меню выберите свою флешку.
@@ -290,7 +290,7 @@ com.apple.recovery.boot
 
 - **Меню загрузки скрыто.** Чтобы увидеть меню OpenCore, держите **Esc** при включении ноутбука.
 - **Текст при запуске.** EFI загружается в подробном режиме (`-v`). Чтобы вернуть обычный логотип Apple, уберите `-v` из `boot-args` в `config.plist`.
-- **Защита системы ослаблена.** System Integrity Protection частично отключена (`csr-active-config` = `03080000`), и задан аргумент загрузки `amfi=0x80`. Так настроена система автора. Если вам это не нужно, верните значения по умолчанию по руководству OpenCore.
+- **Защита системы ослаблена.** System Integrity Protection частично отключена (`csr-active-config` = `03080000`), и задан аргумент загрузки `amfi=0x80`. Так настроена моя система. Если вам это не нужно, верните значения по умолчанию по руководству OpenCore.
 - **Обновления macOS** могут сломать хакинтош. Перед крупным обновлением проверьте, вышли ли новые версии OpenCore и кекстов, и держите установочную флешку под рукой как средство восстановления.
 - **Предыдущая версия** этой EFI доступна по тегу [`v1-old`](../../tree/v1-old).
 
