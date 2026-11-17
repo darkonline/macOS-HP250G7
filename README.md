@@ -1,4 +1,5 @@
 # macOS on HP 250 G7 (6UK91EA)
+<img width="1280" height="720" alt="image" align="center" src="https://github.com/user-attachments/assets/d0505989-1d1b-4a60-81a6-1ad261526230" />
 
 OpenCore EFI for running macOS Sequoia on one specific laptop: **HP 250 G7, product number 6UK91EA**.
 
